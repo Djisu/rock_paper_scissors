@@ -11,7 +11,7 @@
               return rand
             }
             function playRound(){
-              var playerSelection = window.prompt('Enter your selection')
+              var playerSelection = prompt('Enter your selection')
 
              //rules
               // 1 rock > scissors
@@ -21,12 +21,17 @@
               // 4 if (rock == rock) { tie }
               // 5 if (paper == paper) { tie }
               // 6 if (scissors == scissors) then { tie }
+			  
               var varPlayerSelection = playerSelection.toUpperCase()
               var computerSelection = computerPlay()
+			  
+			  
               var varComputerSelection = computerSelection.toUpperCase()
+			  
+console.log(varPlayerSelection,varComputerSelection)
 
               //when playerSelection ='rock'
-              if (playerSelection == 'rock'){
+              if (varPlayerSelection == 'ROCK'){
                 if (varComputerSelection == 'ROCK'){
                   return 'You tie. Play again'
                 }
@@ -38,7 +43,7 @@
                 }
               }
 
-              if (playerSelection == 'paper'){
+              if (varPlayerSelection == 'PAPER'){
                 if (varComputerSelection == 'ROCK'){
                   return 'You won! Paper beats Rock'
                 }
@@ -50,7 +55,7 @@
                 }
               }
 
-              if (playerSelection == 'scissors'){
+              if (varPlayerSelection == 'SCISSORS'){
                 if (varComputerSelection == 'ROCK'){
                   return 'You Lose! Rock beats scissord'
                 }
@@ -71,25 +76,30 @@
               var result
 
               for (var i = 0; i < noOfGames; i++){
-                result = playRound (playerSelection, computerSelection)
+                result = playRound ()
 
+                console.log(result)
                 //Assumption: a tie is a won for the computer!
                 if (result == 'You won! Rock beats scissors' ||
                     result == 'You won! Paper beats Rock' ||
                     result == 'You won. scissors beats paper'
                 ){
                   playerScore++
-                } else {
-                  computerScore++
+                } else if (result == 'You Lose! Paper beats Rock' || 
+				     result == 'You Lose! scissors beats paper' || 
+					 result == 'You Lose! Rock beats scissord'){
+                     computerScore++
                 }
               }
               if (playerScore > computerScore){
                 console.log('Player has won by ' + playerScore)
-              } else {
+              } else if (playerScore < computerScore){
                 console.log('Computer has won by ' + computerScore)
-              }
+              } else if (playerScore == computerScore){
+			      console.log('Draw game')
+			  }
             }
-            console.log(playRound())
+           // console.log(playRound())
             console.log(game())
        </script>
    </body>
